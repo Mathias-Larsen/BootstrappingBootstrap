@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrapping Bootstrap</title>
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="styles/darkly.css">
+    <!--<link rel="stylesheet" href="styles/darkly.css">-->
     <link rel="stylesheet" href="styles/awesome.css">
+
+
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAad4TVotWDDgSqL7EiCUZePt8_fDfuamk">
+    </script>
+    <script type="text/javascript">
+        function initialize() {
+            var mapOptions = {
+                center: { lat: -34.397, lng: 150.644},
+                zoom: 8
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 
 </head>
 <body>
@@ -53,7 +69,10 @@
 
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
+                <li><a href="#" data-theme="default" class="theme-link">Default</a></li>
+                <li><a href="#" data-theme="yeti" class="theme-link">Yeti</a></li>
+                <li><a href="#" data-theme="darkly" class="theme-link">Darkly</a></li>
+                <li><a href="#" data-theme="flatly" class="theme-link">Melisssa</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -68,6 +87,7 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
 
 
 <div class="container custom-border">
@@ -233,7 +253,31 @@
     </div>
 </div>
 
+
+<div id="map-canvas"></div>
+
+
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angularjs/angular.js"></script>
+
+
+<script>
+    var themes = {
+        "default": "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css",
+        "darkly": "styles/darkly.css",
+        "yeti": "styles/yeti.css",
+        "flatly": "styles/flatly.css"
+    }
+
+    $(function(){
+        var themesheet = $('<link href="'+themes+'" rel="stylesheet" />');
+        themesheet.appendTo('head');
+        $('.theme-link').click(function(){
+            var themeurl = themes[$(this).attr('data-theme')];
+            themesheet.attr('href',themeurl);
+        });
+    });
+</script>
 </body>
 </html>
