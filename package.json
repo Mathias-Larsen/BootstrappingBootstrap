@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "bower install",
+
+    "prestart": "npm install",
+    "start": "http-server -a 0.0.0.0 -p 8000"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Mathias-Larsen/BootstrappingBootstrap/issues"
   },
-  "homepage": "https://github.com/Mathias-Larsen/BootstrappingBootstrap"
+  "homepage": "https://github.com/Mathias-Larsen/BootstrappingBootstrap",
+  "devDependencies": {
+    "http-server": "^0.7.4"
+  }
 }
